@@ -1,8 +1,23 @@
+```python
 import sqlite3
+from pathlib import Path
 
+
+# ------------------------------------
+# Ensure Memory Folder Exists
+# ------------------------------------
+
+Path("memory").mkdir(
+    parents=True,
+    exist_ok=True
+)
 
 DB_NAME = "memory/startup_memory.db"
 
+
+# ------------------------------------
+# Initialize Database
+# ------------------------------------
 
 def init_db():
 
@@ -28,6 +43,10 @@ def init_db():
     conn.commit()
     conn.close()
 
+
+# ------------------------------------
+# Save Startup
+# ------------------------------------
 
 def save_startup(
     idea,
@@ -57,6 +76,10 @@ def save_startup(
     conn.close()
 
 
+# ------------------------------------
+# Get All Startups
+# ------------------------------------
+
 def get_all_startups():
 
     conn = sqlite3.connect(DB_NAME)
@@ -80,6 +103,11 @@ def get_all_startups():
 
     return rows
 
+
+# ------------------------------------
+# Get Single Report
+# ------------------------------------
+
 def get_startup_report(
     startup_id
 ):
@@ -101,7 +129,15 @@ def get_startup_report(
 
     conn.close()
 
-    return row[0]
+    if row:
+        return row[0]
+
+    return "No report found."
+
+
+# ------------------------------------
+# Startup Counter
+# ------------------------------------
 
 def get_startup_count():
 
@@ -118,4 +154,4 @@ def get_startup_count():
     conn.close()
 
     return count
-
+```
