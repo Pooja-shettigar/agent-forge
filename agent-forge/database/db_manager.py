@@ -1,4 +1,3 @@
-```python
 import sqlite3
 from pathlib import Path
 
@@ -154,4 +153,3 @@ def get_startup_count():
     conn.close()
 
     return count
-```
