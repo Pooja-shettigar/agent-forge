@@ -1,5 +1,5 @@
 import streamlit as st
-
+import os
 from agents.ceo_agent import CEOAgent
 from evaluations.evaluator import Evaluator
 from database.db_manager import (
@@ -101,14 +101,20 @@ tab1, tab2 = st.tabs(
 
 with tab2:
 
-    st.header(
-        "🏗️ Agent Forge Architecture"
-    )
+    image_path = "assets/agent_architecture.png"
 
-    st.image(
-        "assets/agent_architecture.png",
-        use_container_width=True
-    )
+    if os.path.exists(image_path):
+
+        st.image(
+            image_path,
+            use_container_width=True
+        )
+
+    else:
+
+        st.warning(
+            "Architecture diagram not found."
+        )
 
 # ------------------------------------
 # Main App Tab
